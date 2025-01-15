@@ -1,0 +1,73 @@
+/* Aplica márgenes responsivos a todo el body o contenedor principal */
+body {
+    margin-left: 20%;
+    margin-right: 20%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Para dispositivos pequeños o pantallas más pequeñas */
+@media (max-width: 768px) {
+    body {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    body {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+/* Estilos del menu de navegacion*/
+
+/* Estilos generales para el nav */
+.menuNavSocial {
+    background-color: #EFF7FF; /* Fondo oscuro */
+    padding: 0.8em; /* Espaciado interno */
+    display: flex;
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: space-between;
+}
+
+.bannerBoxNav{
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
+
+/* Banner dentro del nav */
+.bannerNav img {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del nav */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Título dentro del nav */
+.titleNav {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 15px;
+    text-align: center; /* Centra el texto */
+}
+
+/* Caja del usuario dentro del nav */
+.boxUserNav {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    width: 20%;
+    color: #2F2504;
+}
+
+.iconBoxUserNav {
+    font-size: 24px;
+}
+
+.userNav {
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 0.5em;
+}
