@@ -24,50 +24,141 @@ body {
 /* Estilos del menu de navegacion*/
 
 /* Estilos generales para el nav */
-.menuNavSocial {
-    background-color: #EFF7FF; /* Fondo oscuro */
-    padding: 0.8em; /* Espaciado interno */
-    display: flex;
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: space-between;
-}
+    .menuNavSocial {
+        background-color: #EFF7FF; /* Fondo oscuro */
+        padding: 0.8em; /* Espaciado interno */
+        display: flex;
+        align-items: center; /* Centra los elementos horizontalmente */
+        justify-content: space-between;
+    }
 
-.bannerBoxNav{
-    display: flex;
-    align-items: center;
-    width: 40%;
-}
+    .bannerBoxNav{
+        display: flex;
+        align-items: center;
+        width: 40%;
+    }
 
-/* Banner dentro del nav */
-.bannerNav img {
-    width: 100%; /* Hace que la imagen ocupe todo el ancho del nav */
-    height: auto; /* Mantiene la proporción de la imagen */
-    border-radius: 10px; /* Bordes redondeados */
-}
+    /* Banner dentro del nav */
+    .bannerNav img {
+        width: 100%; /* Hace que la imagen ocupe todo el ancho del nav */
+        height: auto; /* Mantiene la proporción de la imagen */
+        border-radius: 10px; /* Bordes redondeados */
+    }
 
-/* Título dentro del nav */
-.titleNav {
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 15px;
-    text-align: center; /* Centra el texto */
-}
+    /* Título dentro del nav */
+    .titleNav {
+        font-size: 24px;
+        font-weight: 600;
+        margin-top: 15px;
+        text-align: center; /* Centra el texto */
+    }
 
-/* Caja del usuario dentro del nav */
-.boxUserNav {
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    width: 20%;
-    color: #2F2504;
-}
+    /* Caja del usuario dentro del nav */
+    .boxUserNav {
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        width: 20%;
+        color: #2F2504;
+    }
 
-.iconBoxUserNav {
-    font-size: 24px;
-}
+    .iconBoxUserNav {
+        font-size: 24px;
+    }
 
-.userNav {
-    font-size: 18px;
-    font-weight: 400;
-    padding-left: 0.5em;
-}
+    .userNav {
+        font-size: 18px;
+        font-weight: 400;
+        padding-left: 0.5em;
+    }
+
+
+/* Estilos del formulario del Post
+    /* Contenedor principal */
+    .post-container {
+        width: 100%;
+        margin: 50px auto;
+        font-family: 'Montserrat', sans-serif;
+        color: #3D322A; /* Color marrón oscuro */
+    }
+
+    /* Cabecera del formulario */
+    .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo del avatar */
+    .avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #3D322A; /* Marrón oscuro */
+        color: #FFFFFF;
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    /* Título "Publicar un Post" */
+    .post-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Formulario */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Grupo de inputs */
+    .form-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    #post-title{
+        width: 90%;
+    }
+
+    #post-date{
+        width: 40%;
+    }
+    
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #3D322A;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #3D322A;
+    }
+
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+
+    /* Botón Publicar */
+    .submit-btn {
+        background-color: #3D322A;
+        color: #FFFFFF;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .submit-btn:hover {
+        background-color: #2B241E; /* Un tono más oscuro */
+    }

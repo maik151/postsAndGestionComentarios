@@ -23,5 +23,27 @@
         </div>
     </nav>
 
+
+    <div class="post-container">
+        <div class="post-header">
+            <!-- Círculo con inicial del nombre -->
+            <div class="avatar">
+                <span>M</span>
+            </div>
+            <span class="post-title">Publicar un Post</span>
+        </div>
+        
+        <!-- Formulario -->
+        <form id="post-form">
+            <div class="form-group">
+                <input type="text" id="post-title" placeholder="Titulo" required>
+                <input type="date" id="post-date" placeholder="Fecha" required>
+            </div>
+            <div class="form-group">
+                <textarea id="post-content" placeholder="Escribe algo :D" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Publicar</button>
+        </form>
+    </div>
 </body>
 </html>
