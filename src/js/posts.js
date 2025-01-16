@@ -28,5 +28,12 @@ export const loadPostsFromLocalStorage = () => {
     }
 };
 
+// Función para agregar un post al array y al localStorage
+export const addPostToArrayAndStorage = (id, nameUser, title, date, content) => {
+    const post = createPost(id, nameUser, title, date, content); // Creamos el post
+    posts.push(post); // Lo agregamos al array
+    savePostsToLocalStorage(); // Lo guardamos en localStorage
+};
+
 // Exportar el array de posts
 export { posts };

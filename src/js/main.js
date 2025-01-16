@@ -1,47 +1,48 @@
 //Importar las fuinciones de los demas
-import { createPost, savePostsToLocalStorage, loadPostsFromLocalStorage, posts } from './posts.js';
+import { createPost, addPostToArrayAndStorage, savePostsToLocalStorage, loadPostsFromLocalStorage, posts } from './posts.js';
 import { createComment } from './comments.js';
 
-// Inicializamos los datos desde localStorage
-loadPostsFromLocalStorage();
+//---------------------Definir Constantes-------------------
 
-ponerNombre();
+//---------------------Funciones del main-----------------------
 
+const handlePostSubmit = (e) => {
+    e.preventDefault(); // Evitamos que el formulario se recargue
+    const nameU = $('.userNav').text(); // Obtenemos el texto del elemento
+    const title = $('#post-title').val(); // Obtenemos el valor del input
+    const date = $('#post-date').val(); // Obtenemos el valor del input
+    const content = $('#post-content').val(); // Obtenemos el valor del textarea
 
+    // Obtenemos los valores del formulario usando jQuery
+    if (title == '' || date == '' || content == '') {
+        alert('Por favor, completa todos los campos.');
+        return;
+    }
+    addPostToArrayAndStorage('1', nameU, title, date, content);
+    alert('¡Se agregó el post con éxito!');// Mostramos un mensaje de éxito
+    // Limpiamos el formulario (opcional)
+    $('#post-title').val(''); $('#post-date').val(''); $('#post-content').val('');
+    console.log(posts); 
+};
 
+// Función provisional para obtener el nombre usando jQuery
+const ponerNombre = () => {
+    let name = prompt("Ingresa tu nombre de usuario, por favor");
+    $('.userNav').append(`${name}`); // Usamos .append para añadir el nombre al texto existente
+    let capitalLeterAvatar = name[0].toUpperCase();
+    console.log(capitalLeterAvatar);
 
-//Eventos de los Botones
+    $('#avatarName').append(capitalLeterAvatar);
 
-//Evento de Prueba con el Boton de publicar
-document.querySelector('.submit-btn').addEventListener('click', (e) =>{
-    e.preventDefault(); //evitamos que se cargue por default el evento del form
-    
-    //obtenemos los valores dle formulario usando querySlector (aun no con Jquery).
-    const nameU = document.querySelector('.userNav').textContent;
-    const title = document.querySelector('#post-title').value;
-    const date = document.querySelector('#post-date').value;
-    const content = document.querySelector('#post-content').value;
-    
-    //Creamos el objeto de tipo Post, ya que es una funcionFlecha, se retorna a si misma
-    const postCreadoo = createPost('1', nameU, title, date, content );
-    
-    //agregamos el post al arrays de posts
-    posts.push(postCreadoo);
+}
 
-    //guardamos en el local storage
-    savePostsToLocalStorage();
+//---------------------------Eventos----------------------------
 
-    //mostramos en consola el postCreado
-    console.log(document.querySelector('.userNav').textContent);
-
-    //crear un alert del post agregado correctamente
-    alert('Se agrego el post con exitooo');
+//Evento para ejecutar las funcioners apenas se cargue el document
+$(document).ready(() => {
+    ponerNombre(); // Llama aquí para asegurarte de que todo está cargado
+    loadPostsFromLocalStorage();// Inicializamos los datos desde localStorage
 });
 
-
-//Funcion Porvisional para obtener el nombre
-
-function ponerNombre(){
-    let name = prompt("Ingresa tu nombre de usuario parfavar");
-    document.querySelector('.userNav').innerText += `${name}`;
-}
+//Asginar evento a el boton de submit
+$('.submit-btn').on('click', handlePostSubmit);
