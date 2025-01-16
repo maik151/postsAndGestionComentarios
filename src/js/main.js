@@ -5,7 +5,7 @@ import { createComment } from './comments.js';
 // Inicializamos los datos desde localStorage
 loadPostsFromLocalStorage();
 
-
+ponerNombre();
 
 
 
@@ -17,7 +17,7 @@ document.querySelector('.submit-btn').addEventListener('click', (e) =>{
     e.preventDefault(); //evitamos que se cargue por default el evento del form
     
     //obtenemos los valores dle formulario usando querySlector (aun no con Jquery).
-    const nameU = 'Jorge';
+    const nameU = document.querySelector('.userNav').textContent;
     const title = document.querySelector('#post-title').value;
     const date = document.querySelector('#post-date').value;
     const content = document.querySelector('#post-content').value;
@@ -32,8 +32,16 @@ document.querySelector('.submit-btn').addEventListener('click', (e) =>{
     savePostsToLocalStorage();
 
     //mostramos en consola el postCreado
-    console.log(posts);
+    console.log(document.querySelector('.userNav').textContent);
 
     //crear un alert del post agregado correctamente
     alert('Se agrego el post con exitooo');
 });
+
+
+//Funcion Porvisional para obtener el nombre
+
+function ponerNombre(){
+    let name = prompt("Ingresa tu nombre de usuario parfavar");
+    document.querySelector('.userNav').innerText += `${name}`;
+}
