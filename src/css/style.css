@@ -277,6 +277,7 @@ body {
         justify-content: flex-start;
     }
 
+    /*Estilos de la caja de comentarios*/
     .comment-btn {
         background: #ddd;
         border: none;
@@ -307,3 +308,194 @@ body {
     .icon-Comment:active {
         transform: scale(1); /* Restaura el tamaño al hacer clic */
     }
+
+
+    /* Estilo para el contenedor del comentario */
+
+    .comments-section{
+        background-color: #999;
+    }
+
+.comment-item {
+    border: 1px solid #ddd; /* Borde sutil alrededor del comentario */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px; /* Espacio dentro del comentario */
+    margin: 10px 0; /* Espacio entre los comentarios */
+    background-color: #f9f9f9; /* Fondo suave */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+  }
+  
+  /* Estilo para el encabezado del comentario (nombre y fecha) */
+  .comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para el avatar (inicial del usuario) */
+  .comment-header .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #1f5673; /* Color de fondo para el avatar */
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%; /* Hacerlo circular */
+    margin-right: 10px;
+  }
+  
+  /* Estilo para la información del usuario (nombre y fecha) */
+  .comment-header .user-info {
+    flex-grow: 1;
+  }
+  
+  /* Nombre de usuario */
+  .comment-header .username {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  
+  /* Fecha del comentario */
+  .comment-header .comment-date {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  /* Estilo para el contenido del comentario */
+  .comment-content {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Estilo adicional para el texto de los comentarios */
+  .comment-content p {
+    margin: 0; /* Evitar márgenes innecesarios */
+  }
+
+
+  /*Estilos dle formulario de comment*?
+
+  /* Estilo para el contenedor de la sección de comentarios */
+.comments-section {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    display: none; /* Inicialmente oculto */
+  }
+  
+  /* Estilo para el contenedor del formulario de comentarios */
+  .comment-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Avatar dentro del formulario */
+  .comment-form .avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  /* Contenedor para el input de comentario */
+  .comment-input {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilo para el input de comentario */
+  .comment-input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para el botón de enviar comentario */
+  .submit-comment {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-comment:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilo para la lista de comentarios */
+  .comment-list {
+    margin-top: 20px;
+  }
+  
+  /* Estilo para cada comentario */
+  .comment-item {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Estilo para el encabezado de cada comentario */
+  .comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .comment-header .avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .comment-header .user-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .comment-header .username {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .comment-header .comment-date {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* Estilo para el contenido del comentario */
+  .comment-content p {
+    font-size: 14px;
+    color: #333;
+  }
+  

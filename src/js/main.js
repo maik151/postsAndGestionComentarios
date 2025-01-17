@@ -1,6 +1,6 @@
 //Importar las fuinciones de los demas
 import { createPost, addPostToArrayAndStorage, savePostsToLocalStorage, loadPostsFromLocalStorage, posts, visualizarPost } from './posts.js';
-import { createComment } from './comments.js';
+//import { createComment } from './comments.js';
 
 //---------------------Definir Constantes-------------------
 
@@ -19,7 +19,7 @@ const handlePostSubmit = (e) => {
         return;
     }
 
-    const newPost = addPostToArrayAndStorage('1', nameU, title, date, content);
+    const newPost = addPostToArrayAndStorage(nameU, title, date, content);
 
     visualizarPost(newPost, true);
 
@@ -57,4 +57,5 @@ $(document).ready(() => {
 });
 
 $('#post-form').on('submit', handlePostSubmit);
+
 
