@@ -16,8 +16,8 @@ body {
 /* Para pantallas muy pequeñas */
 @media (max-width: 480px) {
     body {
-        margin-left: 5%;
-        margin-right: 5%;
+        margin-left: 1%;
+        margin-right: 1%;
     }
 }
 
@@ -163,4 +163,147 @@ body {
 
     .submit-btn:hover {
         background-color: #2B241E; /* Un tono más oscuro */
+    }
+
+/*Estilos del header post card*/
+    .posts-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .posts-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+    }
+
+    .filter-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .filter-icon {
+        width: 20px;
+        height: 20px;
+        filter: grayscale(100%);
+    }
+
+    .filter-btn:hover .filter-icon {
+        filter: none;
+    }
+
+
+/* Estilos de las card de post*/
+
+    .post-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-item{
+        padding: 20px;
+        border-bottom: 2px solid #d4d4d4;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        background-color: #333;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+    }
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .username {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .post-date {
+        color: #999;
+        font-size: 14px;
+    }
+
+    .post-content .post-title {
+        margin: 0;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .post-description {
+        color: #555;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 10px 0 20px;
+    }
+
+    .post-image {
+        height: 50vh;
+        background: linear-gradient(to right, #ff0000, #ff9900, #ffff00);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-content span {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .post-footer {
+        padding-top: 30px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .comment-btn {
+        background: #ddd;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .comment-btn:hover {
+        background: #ccc;
+    }
+
+    .icon-Comment {
+        width: 24px; /* Ajusta el tamaño del ícono */
+        height: 24px;
+        fill: #333; /* Color del ícono */
+        cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+        transition: transform 0.3s ease, fill 0.3s ease; /* Efecto de transición */
+    }
+    
+    .icon-Comment:hover {
+        fill: #007BFF; /* Cambia el color al pasar el cursor */
+        transform: scale(1.2); /* Agranda el ícono ligeramente */
+    }
+    
+    .icon-Comment:active {
+        transform: scale(1); /* Restaura el tamaño al hacer clic */
     }

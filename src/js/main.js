@@ -1,5 +1,5 @@
 //Importar las fuinciones de los demas
-import { createPost, addPostToArrayAndStorage, savePostsToLocalStorage, loadPostsFromLocalStorage, posts } from './posts.js';
+import { createPost, addPostToArrayAndStorage, savePostsToLocalStorage, loadPostsFromLocalStorage, posts, visualizarPost } from './posts.js';
 import { createComment } from './comments.js';
 
 //---------------------Definir Constantes-------------------
@@ -18,31 +18,43 @@ const handlePostSubmit = (e) => {
         alert('Por favor, completa todos los campos.');
         return;
     }
-    addPostToArrayAndStorage('1', nameU, title, date, content);
+
+    const newPost = addPostToArrayAndStorage('1', nameU, title, date, content);
+
+    visualizarPost(newPost, true);
+
     alert('¡Se agregó el post con éxito!');// Mostramos un mensaje de éxito
     // Limpiamos el formulario (opcional)
-    $('#post-title').val(''); $('#post-date').val(''); $('#post-content').val('');
+
+    $('#post-title').val(''); 
+    $('#post-date').val('');
+    $('#post-content').val('');
+    //PROVISIONAL//
     console.log(posts); 
+    
 };
 
 // Función provisional para obtener el nombre usando jQuery
-const ponerNombre = () => {
-    let name = prompt("Ingresa tu nombre de usuario, por favor");
-    $('.userNav').append(`${name}`); // Usamos .append para añadir el nombre al texto existente
-    let capitalLeterAvatar = name[0].toUpperCase();
-    console.log(capitalLeterAvatar);
+const setUserName  = () => {
 
-    $('#avatarName').append(capitalLeterAvatar);
-
+    const name = prompt("Ingresa tu nombre de usuario, por favor").trim();
+    if (name) {
+        $('.userNav').text(name); // Mostrar el nombre del usuario
+        $('#avatarName').text(name[0].toUpperCase()); // Inicial para el avatar
+    }
 }
+
 
 //---------------------------Eventos----------------------------
 
 //Evento para ejecutar las funcioners apenas se cargue el document
 $(document).ready(() => {
-    ponerNombre(); // Llama aquí para asegurarte de que todo está cargado
-    loadPostsFromLocalStorage();// Inicializamos los datos desde localStorage
+    setUserName(); // Configurar el nombre de usuario
+    loadPostsFromLocalStorage(); // Cargar los posts existentes
+
+    // Asignar el evento de envío al formulario
+    
 });
 
-//Asginar evento a el boton de submit
-$('.submit-btn').on('click', handlePostSubmit);
+$('#post-form').on('submit', handlePostSubmit);
+
