@@ -1,5 +1,6 @@
 // posts.js
-import { visualizarComentario} from './comments.js';
+import { agregarComentario, visualizarComentario} from './comments.js';
+
 let posts = []; // Array de posts
 const postsKey = "posts"; // Clave para almacenar los posts en localStorage
 
@@ -15,7 +16,7 @@ export const createPost = (id, nameUser, title, date, content) => ({
 
 // Función para guardar un post en el array y en localStorage
 export const addPostToArrayAndStorage = (nameUser, title, date, content) => {
-  const id = posts.length; // Usamos el índice del arreglo como ID
+  const id = posts.length > 0 ? posts[posts.length - 1].id + 1 : 1; // El primer post tendrá ID 1, el siguiente 2, etc.
   const newPost = createPost(id, nameUser, title, date, content); // Crear el post
   posts.unshift(newPost); // Agregar al inicio del array
   savePostsToLocalStorage(); // Guardar el array actualizado en localStorage
@@ -30,42 +31,67 @@ export const savePostsToLocalStorage = () => {
 // Función para cargar los posts desde localStorage
 export const loadPostsFromLocalStorage = () => {
   const storedPosts = JSON.parse(localStorage.getItem(postsKey)) || [];
-  posts = storedPosts; // Sincronizar el array local con los datos almacenados
-  posts.forEach((post) => visualizarPost(post, false)); // Mostrar cada post en la interfaz
+    posts = storedPosts; // Sincronizar el array local con los datos almacenados
+    
+
+    posts.forEach((post) => {
+    if (post && post.nameUser && post.id) {
+      // Visualiza el post
+      visualizarPost(post, false); 
+
+      // Cargar los comentarios del post en su sección correspondiente
+      const postElement = $(".post-item").last(); // Seleccionar el último post visualizado
+      post.comments.forEach((comment) => {
+        // Pasar el contenedor correcto de cada post
+        visualizarComentario(comment, postElement); 
+      });
+    } else {
+      console.error("Post inválido o sin ID:", post);
+      $('.post-card').text('No hay nada que cargar');
+    }
+  });
 };
 
 // Función para visualizar un post en el contenedor `.post-card`
-export const visualizarPost = (post, isNew = false) => {
-    const postHTML = `
+export const visualizarPost = (postParameter, isNew = false) => {
+  const leterUserActive = $('.userNav').text()[0].toUpperCase();
+  console.log(leterUserActive);
+  
+  const postHTML = `
       <div class="post-item">
         <div class="post-header">
-          <div class="avatar">${post.nameUser[0].toUpperCase()}</div>
+          <div class="avatar">${postParameter.nameUser[0].toUpperCase()}</div>
           <div class="user-info">
-            <span class="username">@${post.nameUser}</span>
-            <span class="post-date">${post.date}</span>
+            <span class="username">@${postParameter.nameUser}</span>
+            <span class="post-date">${postParameter.date}</span>
           </div>
         </div>
         <div class="post-content">
-          <h2 class="post-title">${post.title}</h2>
-          <p>${post.content}</p>
+          <h2 class="post-title">${postParameter.title}</h2>
+          <p>${postParameter.content}</p>
         </div>
         <div class="post-footer">
           <button class="comment-btn">Comentar</button>
         </div>
+
+        
         <div class="comments-section" style="display: none;">
           <!-- Aquí van los comentarios -->
           <div class="comment-form">
-            <div class="avatar">A</div>
+            <div class="avatar">${leterUserActive}</div>
             <div class="comment-input">
-              <input type="text" placeholder="Escribe un comentario..." id="comment-input">
+              <input type="text" placeholder="Escribe un comentario..." class="comment-box">
               <button class="submit-comment">Comentar</button>
             </div>
           </div>
-          <div class="comment-list"></div> <!-- Aquí se mostrarán los comentarios -->
+          <div class="comment-list">
+            <!-- Aquí se mostrarán los comentarios -->
+          </div> 
         </div>
       </div>
     `;
-  
+
+    
     if (isNew) {
       $(".post-card").prepend(postHTML); // Agregar al inicio si es un nuevo post
     } else {
@@ -74,50 +100,52 @@ export const visualizarPost = (post, isNew = false) => {
   };
 
 
-  $(".post-card").on('click', '.comment-btn', function() {
+//--------------------------------eventos----------------------------------------------
+ //Evento del boton de comment para mostar la caja de comentarios
+$(".post-card").on('click', '.comment-btn', function() {
     const postElement = $(this).closest(".post-item"); // Encontrar el post donde se hizo clic
   
     // Mostrar/Ocultar la sección de comentarios
     const commentsSection = postElement.find(".comments-section");
     commentsSection.toggle(); // Toggle: Si está visible la oculta, si está oculta la muestra
   
-    console.log("Caja de comentarios en este post:", postElement);
+    //console.log("Caja de comentarios en este post:", postElement);
   });
 
-
+//Evento para el boton de registrar comentario
   $(".post-card").on('click', '.submit-comment', function() {
-    const postElement = $(this).closest(".post-item"); // Encontrar el post donde se hizo clic
-    const commentText = postElement.find("#comment-input").val(); // Obtener el texto del comentario
-  
-    if (commentText.trim() === "") {
-      alert("Por favor, escribe un comentario.");
-      return;
+
+    const postElement = $(this).closest(".post-item"); // Buscar el elemento del post
+    //obtenemos el nombre dle post de donde se clickea le evento
+    const nameSearch = postElement.find('.username').first().text().replace('@','');
+    
+
+    const postElementArray = posts.find(postElement => postElement.nameUser === nameSearch);
+    console.log(postElementArray);
+    
+
+    // Verificar si el post fue encontrado
+    if (!postElementArray) {
+    console.error("Post no encontrado");
+    return; // Detener la ejecución si el post no se encuentra
     }
-  
-    // Crear y agregar el comentario
-    const newCommentHTML = `
-      <div class="comment-item">
-        <div class="comment-header">
-          <div class="avatar">U</div>
-          <div class="user-info">
-            <span class="username">Usuario</span>
-            <span class="comment-date">${new Date().toLocaleDateString()}</span>
-          </div>
-        </div>
-        <div class="comment-content">
-          <p>${commentText}</p>
-        </div>
-      </div>
-    `;
-  
-    // Agregar el comentario en el contenedor de comentarios
-    postElement.find(".comment-list").append(newCommentHTML);
-  
-    // Limpiar el campo de entrada del comentario
-    postElement.find("#comment-input").val("");
-    console.log("Comentario agregado en el post con título:", postElement.find('.post-title').text()); // Verificar con el título del post
-    console.log("Comentario agregado en este post:", postElement);
+
+    const postId = postElementArray.id; // Obtener el ID del post
+    console.log(postId);
+    const content = postElement.find(".comment-box").val(); // Obtener el contenido del input
+
+    const nameUserUsed = $('.userNav').text();
+    if ($.trim(content) !== "") {
+      const newComment =  agregarComentario(postId,nameUserUsed , content); // Llamar a la función para agregar comentario
+      postElement.find("#comment-input").val(""); // Limpiar el input
+      visualizarComentario(newComment, postElement)
+      
+    }
+    
+
   });
+
+
 
 //$(".post-card").on('click', '.comment-btn', function() {
 //    const postElement = $(this).closest(".post-item"); // Encontrar el post-item más cercano al botón de comentar
