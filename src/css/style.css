@@ -534,4 +534,57 @@ body {
   .comment-actions button i {
     pointer-events: none; /* Deshabilitar eventos en los íconos */
   }
+
+  /*Estilos input comentario editar
+
+  /* Estilo para el contenedor del comentario (cuando se edita) */
+.comment-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Estilo para el input de edición del comentario */
+  .edit-comment-input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+  }
+  
+  .edit-comment-input:focus {
+    border-color: #007bff; /* Color de borde cuando el input está en foco */
+    outline: none;
+    background-color: #fff;
+  }
+  
+  /* Estilo para el botón de guardar (check) */
+  .save-comment {
+    background-color: #28a745;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .save-comment:hover {
+    background-color: #218838;
+  }
+  
+  .save-comment:active {
+    background-color: #1e7e34;
+  }
+  
+  /* Estilo para el icono del check */
+  .save-comment i {
+    margin: 0;
+    font-size: 16px;
+    vertical-align: middle;
+  }
   

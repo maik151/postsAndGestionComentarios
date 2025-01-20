@@ -1,5 +1,5 @@
 // posts.js
-import { agregarComentario, visualizarComentario, eliminarComentario} from './comments.js';
+import { agregarComentario, visualizarComentario, eliminarComentario, editarComentario} from './comments.js';
 
 let posts = []; // Array de posts
 const postsKey = "posts"; // Clave para almacenar los posts en localStorage
@@ -139,8 +139,10 @@ $(".post-card").on('click', '.comment-btn', function() {
       const newComment =  agregarComentario(postId,nameUserUsed , content); // Llamar a la función para agregar comentario
       postElement.find("#comment-input").val(""); // Limpiar el input
       visualizarComentario(newComment, postElement)
-      
+
+      $('.comment-box').val('');
     }
+    
     
 
   });
@@ -164,6 +166,64 @@ $(".post-card").on('click', '.comment-btn', function() {
     $(this).closest(".comment-item").remove();
 
     
+  });
+
+
+  $(document).on("click", ".edit-comment", function () {
+
+    const postElementC = $(this).closest(".post-item"); // Obtener el post donde se hace clic
+    const nameSearch = postElementC.find('.username').first().text().replace('@', ''); // Obtener el nombre del usuario
+    
+    // Obtener los posts del localStorage
+    const posts = JSON.parse(localStorage.getItem("posts")) || []; 
+  
+    // Buscar el post correspondiente
+    const postElementArray = posts.find(post => post.nameUser === nameSearch);
+    
+    if (!postElementArray) {
+      console.error("Post no encontrado.");
+      return;
+    }
+  
+    // Obtener el array de comentarios del post
+    const commentElementArray = postElementArray.comments;
+  
+    // Obtener el ID del comentario que se va a editar
+    const commentId = $(this).closest(".comment-item").data("id");
+  
+    // Buscar el comentario en el arreglo
+    const comment = commentElementArray.find(comment => comment.idComment === commentId);
+  
+    if (!comment) {
+      console.error("Comentario no encontrado.");
+      return;
+    }
+  
+    // Convertir el contenido del comentario en un input text
+    const commentContent = $(this).closest(".comment-item").find(".comment-text").text();
+    const inputHTML = `
+      <input type="text" class="edit-comment-input" value="${commentContent}" />
+      <button class="save-comment"><i class="fa-solid fa-check"></i></button>
+    `;
+  
+    $(this).closest(".comment-item").find(".comment-content").html(inputHTML); // Reemplazar el contenido por el input
+  
+    // Evento para guardar el comentario editado
+    $(document).on("click", ".save-comment", function () {
+      const newContent = $(this).siblings(".edit-comment-input").val(); // Obtener el nuevo contenido del input
+      if (newContent.trim() === "") {
+        console.error("El contenido no puede estar vacío.");
+        return;
+      }
+  
+      // Llamar a la función para actualizar el comentario
+      const updatedComment = editarComentario(commentId, newContent, postElementArray.id);
+  
+      // Actualizar el comentario visualmente
+      $(this).closest(".comment-item").find(".comment-content").html(`<p class="comment-text">${updatedComment.content}</p>`);
+  
+      console.log("Comentario actualizado correctamente.");
+    });
   });
 
 

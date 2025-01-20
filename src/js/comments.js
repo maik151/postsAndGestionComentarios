@@ -100,3 +100,30 @@ export const eliminarComentario = (commentId, nameSearch) => {
 
   console.log("Comentario eliminado correctamente.");
 };
+
+// Función para editar comentario
+export const editarComentario = (commentId, newContent, postId) => {
+  const posts = JSON.parse(localStorage.getItem("posts")) || []; // Obtener posts del localStorage
+  const post = posts.find(post => post.id === postId); // Encontrar el post por ID
+  
+  if (!post) {
+    console.error("Post no encontrado.");
+    return;
+  }
+
+  // Encontrar el comentario por su ID
+  const comment = post.comments.find(comment => comment.idComment === commentId);
+
+  if (!comment) {
+    console.error("Comentario no encontrado.");
+    return;
+  }
+
+  // Actualizar el contenido del comentario
+  comment.content = newContent;
+
+  // Guardar los cambios en el localStorage
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  return comment; // Devolver el comentario actualizado
+};
