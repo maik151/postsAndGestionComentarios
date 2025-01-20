@@ -1,494 +1,646 @@
-/* Aplica márgenes responsivos a todo el body o contenedor principal */
+/* === Estilos Generales Responsivos === */
+
+/* Configuración base */
+html {
+    font-size: 16px; /* Base de 16px = 1rem */
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     margin-left: 20%;
     margin-right: 20%;
     font-family: 'Montserrat', sans-serif;
+    font-size: 1rem; /* Texto base 16px */
+    line-height: 1.5; /* Mejora la legibilidad */
 }
 
-/* Para dispositivos pequeños o pantallas más pequeñas */
+/* Para dispositivos medianos (tablets y laptops pequeñas) */
 @media (max-width: 768px) {
     body {
         margin-left: 5%;
         margin-right: 5%;
+        font-size: 0.9rem; /* Escala el texto para pantallas medianas */
     }
 }
 
-/* Para pantallas muy pequeñas */
+/* Para pantallas muy pequeñas (móviles) */
 @media (max-width: 480px) {
     body {
-        margin-left: 1%;
-        margin-right: 1%;
+        margin-left: 2%;
+        margin-right: 2%;
+        font-size: 0.8rem; /* Texto más pequeño para móviles */
     }
 }
 
-/* Estilos del menu de navegacion*/
+/* === Estilos del Menú de Navegación === */
+.menuNavSocial {
+    background-color: #fff;
+    padding: 1em; /* Espaciado interno */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-/* Estilos generales para el nav */
-    .menuNavSocial {
-        background-color: #EFF7FF; /* Fondo oscuro */
-        padding: 0.8em; /* Espaciado interno */
-        display: flex;
-        align-items: center; /* Centra los elementos horizontalmente */
-        justify-content: space-between;
-    }
+/* Contenedor del banner */
+.bannerBoxNav {
+    display: flex;
+    align-items: center;
+    width: 40%;
+}
 
-    .bannerBoxNav{
-        display: flex;
-        align-items: center;
-        width: 40%;
-    }
+/* Imagen del banner */
+.bannerNav img {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Mantiene proporciones */
+    border-radius: 0.625rem; /* 10px redondeado */
+}
 
-    /* Banner dentro del nav */
-    .bannerNav img {
-        width: 100%; /* Hace que la imagen ocupe todo el ancho del nav */
-        height: auto; /* Mantiene la proporción de la imagen */
-        border-radius: 10px; /* Bordes redondeados */
-    }
+/* Título del banner */
+.titleNav {
+    font-size: 1.5rem; /* Escalable con rem */
+    font-weight: 600;
+    margin-top: 1rem;
+    text-align: center;
+}
 
-    /* Título dentro del nav */
-    .titleNav {
-        font-size: 24px;
-        font-weight: 600;
-        margin-top: 15px;
-        text-align: center; /* Centra el texto */
-    }
+/* Usuario dentro del nav */
+.boxUserNav {
+    display: flex;
+    align-items: center;
+    border-radius: 0.625rem; /* 10px */
+    width: 20%;
+    color: #2F2504;
+}
 
-    /* Caja del usuario dentro del nav */
-    .boxUserNav {
-        display: flex;
-        align-items: center;
-        border-radius: 10px;
-        width: 20%;
-        color: #2F2504;
-    }
+.iconBoxUserNav {
+    font-size: 1.5rem; /* Escalable */
+}
 
-    .iconBoxUserNav {
-        font-size: 24px;
-    }
+.userNav {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    padding-left: 0.5em;
+}
 
-    .userNav {
-        font-size: 18px;
-        font-weight: 400;
-        padding-left: 0.5em;
-    }
+/* === Estilos del Formulario del Post === */
+.post-container {
+    width: 100%;
+    margin: 3rem auto;
+    font-family: 'Montserrat', sans-serif;
+    color: #3D322A;
+}
 
+/* Cabecera del formulario */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
 
-/* Estilos del formulario del Post
-    /* Contenedor principal */
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.125rem; /* 50px */
+    height: 3.125rem; /* 50px */
+    border-radius: 50%;
+    background-color: #3D322A;
+    color: #FFFFFF;
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    margin-right: 0.625rem; /* 10px */
+}
+
+.post-title {
+    font-size: 1.125rem; /* 18px */
+    font-weight: bold;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaciado entre inputs */
+    padding-left: 3em;
+}
+
+.form-group {
+    display: flex;
+    gap: 0.625rem; /* Espaciado entre inputs (10px) */
+}
+
+#post-title {
+    width: 90%;
+}
+
+#post-date {
+    width: 40%;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.625rem; /* 10px */
+    border: 1px solid #3D322A;
+    border-radius: 0.3125rem; /* 5px */
+    font-size: 1rem;
+    color: #3D322A;
+}
+
+textarea {
+    resize: none;
+    height: 6.25rem; /* 100px */
+}
+
+/* Botón Publicar */
+.submit-btn {
+    background-color: #3D322A;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.625rem;
+    font-size: 1rem; /* Escalable */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.3125rem; /* 5px */
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #2B241E; /* Un tono más oscuro */
+}
+
+/* === Ajustes Responsivos del Formulario === */
+
+/* Para tablets */
+@media (max-width: 768px) {
     .post-container {
-        width: 100%;
-        margin: 50px auto;
-        font-family: 'Montserrat', sans-serif;
-        color: #3D322A; /* Color marrón oscuro */
+        padding: 1rem;
     }
 
-    /* Cabecera del formulario */
-    .post-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    /* Estilo del avatar */
-    .avatar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #3D322A; /* Marrón oscuro */
-        color: #FFFFFF;
-        font-size: 20px;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-    /* Título "Publicar un Post" */
-    .post-title {
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    /* Formulario */
-   
     form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding-left: 3.8em;
+        padding-left: 2em;
     }
 
-    /* Grupo de inputs */
     .form-group {
-        display: flex;
-        gap: 10px;
+        flex-direction: column; /* Coloca inputs en columna */
+        gap: 0.5rem;
+    }
+}
+
+/* Para móviles */
+@media (max-width: 480px) {
+    .post-container {
+        margin: 2rem auto;
     }
 
-    #post-title{
-        width: 90%;
+    .post-title {
+        font-size: 1rem; /* Texto más pequeño */
     }
 
-    #post-date{
-        width: 40%;
-    }
-    
-
-    input, textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #3D322A;
-        border-radius: 5px;
-        font-size: 14px;
-        color: #3D322A;
+    form {
+        padding-left: 1em;
     }
 
-    textarea {
-        resize: none;
-        height: 100px;
+    .form-group {
+        gap: 0.5rem;
     }
 
-    /* Botón Publicar */
     .submit-btn {
-        background-color: #3D322A;
-        color: #FFFFFF;
-        border: none;
-        padding: 10px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 5px;
-        text-align: center;
+        font-size: 0.875rem; /* Más pequeño en móviles */
+        padding: 0.5rem;
     }
+}
 
-    .submit-btn:hover {
-        background-color: #2B241E; /* Un tono más oscuro */
-    }
+/* === Estilos Responsivos del Header de las Cards === */
 
-/*Estilos del header post card*/
-    .posts-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 20px;
-    }
+.posts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.25rem; /* 20px */
+}
 
+.posts-title {
+    font-size: 1.5rem; /* 24px */
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.filter-btn, .reload-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3125rem; /* 5px */
+    border-radius: 0.625rem; /* 10px */
+    transition: background-color 0.3s;
+}
+
+.filter-btn:hover, .reload-btn:hover {
+    background-color: #b3b3b3;
+}
+
+.filter-icon, .reload-icon {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+}
+
+/* === Estilos de las Cards de Post === */
+
+.post-card {
+    background: #fff;
+    border: 0.0625rem solid #ddd; /* 1px */
+    border-radius: 0.5rem; /* 8px */
+    width: 100%;
+    padding: 1.25rem; /* 20px */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.post-item {
+    padding: 1.25rem; /* 20px */
+    border-bottom: 0.125rem solid #d4d4d4; /* 2px */
+}
+
+.user-avatar {
+    width: 3.125rem; /* 50px */
+    height: 3.125rem; /* 50px */
+    background-color: #333;
+    color: #fff;
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.9375rem; /* 15px */
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-weight: bold;
+    color: #333;
+}
+
+.post-date {
+    color: #999;
+    font-size: 0.875rem; /* 14px */
+}
+
+.post-content .post-title {
+    margin: 0;
+    font-size: 1.25rem; /* 20px */
+    color: #333;
+}
+
+.post-description {
+    color: #555;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.6;
+    margin: 0.625rem 0 1.25rem; /* 10px 0 20px */
+}
+
+.post-image {
+    height: 50vh;
+    background: linear-gradient(to right, #ff0000, #ff9900, #ffff00);
+    border-radius: 0.5rem; /* 8px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-content span {
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    color: #333;
+}
+
+.post-footer {
+    padding-top: 1.875rem; /* 30px */
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* === Estilos de la Caja de Comentarios === */
+
+.comment-btn {
+    background: #ddd;
+    border: none;
+    padding: 0.625rem 0.9375rem; /* 10px 15px */
+    border-radius: 0.3125rem; /* 5px */
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+}
+
+.comment-btn:hover {
+    background: #ccc;
+}
+
+.icon-Comment {
+    width: 1.5rem; /* 24px */
+    height: 1.5rem; /* 24px */
+    fill: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.icon-Comment:hover {
+    fill: #007BFF;
+    transform: scale(1.2);
+}
+
+.icon-Comment:active {
+    transform: scale(1);
+}
+
+/* === Ajustes Responsivos === */
+
+/* Para tablets (pantallas medianas) */
+@media (max-width: 768px) {
     .posts-title {
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
-        margin: 0;
+        font-size: 1.25rem; /* 20px */
     }
 
-    .filter-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 5px;
-        border-radius: 10px;
-        transition: 0.3s;
+    .filter-btn, .reload-btn {
+        padding: 0.25rem; /* 4px */
     }
-
-    .filter-icon {
-        width: 20px;
-        height: 0.3s
-    }
-
-    .filter-btn:hover{
-        background-color: #b3b3b3;
-        transition: 0.3s;
-    }
-
-
-    .reload-btn{
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 5px;
-        border-radius: 10px;
-        transition: 0.3s;
-    }
-    
-    .reload-btn:hover{
-        background-color: #b3b3b3;
-        transition: 0.3s;
-    }
-    
-    .reload-icon{
-        width: 20px;
-        height: 20px;
-    }
-    
-
-/* Estilos de las card de post*/
 
     .post-card {
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        width: 100%;
-        padding: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem; /* 16px */
     }
 
-    .post-item{
-        padding: 20px;
-        border-bottom: 2px solid #d4d4d4;
+    .post-item {
+        padding: 1rem; /* 16px */
     }
 
     .user-avatar {
-        width: 50px;
-        height: 50px;
-        background-color: #333;
-        color: #fff;
-        font-size: 20px;
-        font-weight: bold;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 15px;
-    }
-
-    .user-info {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .username {
-        font-weight: bold;
-        color: #333;
-    }
-
-    .post-date {
-        color: #999;
-        font-size: 14px;
-    }
-
-    .post-content .post-title {
-        margin: 0;
-        font-size: 20px;
-        color: #333;
+        width: 2.5rem; /* 40px */
+        height: 2.5rem; /* 40px */
+        font-size: 1rem; /* 16px */
     }
 
     .post-description {
-        color: #555;
-        font-size: 14px;
-        line-height: 1.6;
-        margin: 10px 0 20px;
+        font-size: 0.8125rem; /* 13px */
+    }
+}
+
+/* Para móviles (pantallas pequeñas) */
+@media (max-width: 480px) {
+    .posts-title {
+        font-size: 1rem; /* 16px */
+    }
+
+    .post-card {
+        padding: 0.9375rem; /* 15px */
+    }
+
+    .post-item {
+        padding: 0.9375rem; /* 15px */
+    }
+
+    .user-avatar {
+        width: 2rem; /* 32px */
+        height: 2rem; /* 32px */
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .post-description {
+        font-size: 0.75rem; /* 12px */
     }
 
     .post-image {
-        height: 50vh;
-        background: linear-gradient(to right, #ff0000, #ff9900, #ffff00);
-        border-radius: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        height: 40vh;
     }
 
-    .image-content span {
-        font-size: 20px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .post-footer {
-        padding-top: 30px;
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    /*Estilos de la caja de comentarios*/
     .comment-btn {
-        background: #ddd;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        color: #333;
-        font-weight: bold;
-    }
-
-    .comment-btn:hover {
-        background: #ccc;
+        padding: 0.5rem 0.75rem; /* 8px 12px */
+        font-size: 0.875rem; /* 14px */
     }
 
     .icon-Comment {
-        width: 24px; /* Ajusta el tamaño del ícono */
-        height: 24px;
-        fill: #333; /* Color del ícono */
-        cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
-        transition: transform 0.3s ease, fill 0.3s ease; /* Efecto de transición */
+        width: 1.25rem; /* 20px */
+        height: 1.25rem; /* 20px */
     }
-    
-    .icon-Comment:hover {
-        fill: #007BFF; /* Cambia el color al pasar el cursor */
-        transform: scale(1.2); /* Agranda el ícono ligeramente */
-    }
-    
-    .icon-Comment:active {
-        transform: scale(1); /* Restaura el tamaño al hacer clic */
-    }
+}
+    /* === Estilo General para la Sección de Comentarios === */
 
-
-    /* Estilo para el contenedor del comentario */
-
-    .comments-section{
-        background-color: #999;
-    }
-
-.comment-item {
-    border: 1px solid #ddd; /* Borde sutil alrededor del comentario */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 15px; /* Espacio dentro del comentario */
-    margin: 10px 0; /* Espacio entre los comentarios */
-    background-color: #f9f9f9; /* Fondo suave */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
-  }
-  
-  /* Estilo para el encabezado del comentario (nombre y fecha) */
-  .comment-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  /* Estilo para el avatar (inicial del usuario) */
-  .comment-header .avatar {
-    width: 40px;
-    height: 40px;
-    background-color: #1f5673; /* Color de fondo para el avatar */
-    color: white;
-    font-size: 18px;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 50%; /* Hacerlo circular */
-    margin-right: 10px;
-  }
-  
-  /* Estilo para la información del usuario (nombre y fecha) */
-  .comment-header .user-info {
-    flex-grow: 1;
-  }
-  
-  /* Nombre de usuario */
-  .comment-header .username {
-    font-weight: bold;
-    color: #333;
-    font-size: 14px;
-    margin-right: 5px;
-  }
-  
-  /* Fecha del comentario */
-  .comment-header .comment-date {
-    font-size: 12px;
-    color: #999;
-  }
-  
-  /* Estilo para el contenido del comentario */
-  .comment-content {
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
-  }
-  
-  /* Estilo adicional para el texto de los comentarios */
-  .comment-content p {
-    margin: 0; /* Evitar márgenes innecesarios */
-  }
-
-
-  /*Estilos dle formulario de comment*?
-
-  /* Estilo para el contenedor de la sección de comentarios */
 .comments-section {
     background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
-    border: 1px solid #ddd;
+    padding: 1rem; /* 15px */
+    border-radius: 0.625rem; /* 10px */
+    margin-top: 1.25rem; /* 20px */
+    border: 0.0625rem solid #ddd; /* 1px */
     display: none; /* Inicialmente oculto */
-  }
-  
-  /* Estilo para el contenedor del formulario de comentarios */
-  .comment-form {
+}
+
+/* === Estilo de los Comentarios Individuales === */
+
+.comment-item {
+    border: 0.0625rem solid #ddd; /* 1px */
+    border-radius: 0.5rem; /* 8px */
+    padding: 1rem; /* 15px */
+    margin: 0.625rem 0; /* 10px */
+    background-color: #f9f9f9;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* === Estilo del Encabezado de los Comentarios === */
+
+.comment-header {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  /* Avatar dentro del formulario */
-  .comment-form .avatar {
-    width: 40px;
-    height: 40px;
-    background-color: #4CAF50; /* Color verde */
+    margin-bottom: 0.625rem; /* 10px */
+}
+
+/* Avatar dentro del encabezado */
+.comment-header .avatar {
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    background-color: #1f5673; /* Color azul */
+    color: white;
+    font-size: 1.125rem; /* 18px */
+    text-align: center;
+    line-height: 2.5rem; /* 40px */
+    border-radius: 50%; /* Circular */
+    margin-right: 0.625rem; /* 10px */
+}
+
+/* Información del usuario (nombre y fecha) */
+.comment-header .user-info {
+    flex-grow: 1;
+}
+
+.username {
+    font-weight: bold;
+    color: #333;
+    font-size: 0.875rem; /* 14px */
+    margin-right: 0.3125rem; /* 5px */
+}
+
+.comment-date {
+    font-size: 0.75rem; /* 12px */
+    color: #999;
+}
+
+/* === Contenido del Comentario === */
+
+.comment-content {
+    font-size: 0.875rem; /* 14px */
+    color: #333;
+    line-height: 1.6;
+}
+
+.comment-content p {
+    margin: 0; /* Evitar márgenes extra */
+}
+
+/* === Formulario para Añadir Comentarios === */
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem; /* 15px */
+}
+
+/* Avatar en el formulario */
+.comment-form .avatar {
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
+    background-color: #4CAF50; /* Verde */
     color: white;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
-    margin-right: 10px;
-  }
-  
-  /* Contenedor para el input de comentario */
-  .comment-input {
+    font-size: 1.25rem; /* 20px */
+    margin-right: 0.625rem; /* 10px */
+}
+
+/* Input del formulario */
+.comment-input {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-  }
-  
-  /* Estilo para el input de comentario */
-  .comment-input input {
+}
+
+.comment-input input {
     width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    margin-bottom: 10px;
+    padding: 0.625rem; /* 10px */
+    border-radius: 0.3125rem; /* 5px */
+    border: 0.0625rem solid #ccc; /* 1px */
+    font-size: 0.875rem; /* 14px */
+    margin-bottom: 0.625rem; /* 10px */
     box-sizing: border-box;
-  }
-  
-  /* Estilo para el botón de enviar comentario */
-  .submit-comment {
-    padding: 8px 15px;
+}
+
+/* Botón de enviar comentario */
+.submit-comment {
+    padding: 0.5rem 0.9375rem; /* 8px 15px */
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
     transition: background-color 0.3s ease;
-  }
-  
-  .submit-comment:hover {
-    background-color: #45a049;
-  }
-  
-  /* Estilo para la lista de comentarios */
-  .comment-list {
-    margin-top: 20px;
-  }
-  
-  /* Estilo para cada comentario */
-  .comment-item {
+}
+
+.submit-comment:hover {
+    background-color: #45a049; /* Color más oscuro */
+}
+
+/* === Lista de Comentarios === */
+
+.comment-list {
+    margin-top: 1.25rem; /* 20px */
+}
+
+/* === Estilos Responsivos === */
+
+/* Para tablets (pantallas medianas) */
+@media (max-width: 768px) {
+    .comment-header .avatar,
+    .comment-form .avatar {
+        width: 2rem; /* 32px */
+        height: 2rem; /* 32px */
+        font-size: 1rem; /* 16px */
+    }
+
+    .comment-content {
+        font-size: 0.8125rem; /* 13px */
+    }
+
+    .submit-comment {
+        padding: 0.5rem 0.75rem; /* 8px 12px */
+        font-size: 0.8125rem; /* 13px */
+    }
+
+    .comment-input input {
+        font-size: 0.8125rem; /* 13px */
+    }
+}
+
+/* Para móviles (pantallas pequeñas) */
+@media (max-width: 480px) {
+    .comment-item {
+        padding: 0.9375rem; /* 15px */
+    }
+
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .username {
+        font-size: 0.8125rem; /* 13px */
+    }
+
+    .comment-date {
+        font-size: 0.6875rem; /* 11px */
+    }
+
+    .comment-content {
+        font-size: 0.75rem; /* 12px */
+    }
+
+    .submit-comment {
+        width: 100%;
+        padding: 0.5rem; /* 8px */
+        font-size: 0.8125rem; /* 13px */
+    }
+    .comment-actions{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+ /* Estilo general para los comentarios */
+.comment-item {
     background-color: #ffffff;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
     border: 1px solid #ddd;
-  }
-  
-  /* Estilo para el encabezado de cada comentario */
-  .comment-header {
+}
+
+/* Encabezado de cada comentario */
+.comment-header {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-  }
-  
-  .comment-header .avatar {
+}
+
+.comment-header .avatar {
     width: 30px;
     height: 30px;
     background-color: #4CAF50;
@@ -499,76 +651,65 @@ body {
     align-items: center;
     font-size: 16px;
     margin-right: 10px;
-  }
-  
-  .comment-header .user-info {
+}
+
+.comment-header .user-info {
     display: flex;
     flex-direction: column;
-  }
-  
-  .comment-header .username {
+}
+
+.comment-header .username {
     font-weight: bold;
     color: #333;
-  }
-  
-  .comment-header .comment-date {
+}
+
+.comment-header .comment-date {
     font-size: 12px;
     color: #888;
-  }
-  
-  /* Estilo para el contenido del comentario */
-  .comment-content p {
+}
+
+/* Contenido del comentario */
+.comment-content p {
     font-size: 14px;
     color: #333;
-  }
+}
 
-  /*Estilos botones de editar y eliminar*/
-  /* Contenedor de acciones de los comentarios */
+/* Botones de editar y eliminar */
 .comment-actions {
     display: flex;
     gap: 10px;
     margin-top: 5px;
-  }
-  
-  /* Estilo base de los botones de acción */
-  .comment-actions button {
-    background-color: #ffffff; /* Fondo blanco */
-    border: 2px solid #d9d9d9; /* Borde gris claro */
-    color: #555; /* Color del ícono */
-    border-radius: 50%; /* Forma circular */
-    width: 40px; /* Tamaño del botón */
-    height: 40px; /* Tamaño del botón */
+}
+
+.comment-actions button {
+    background-color: #ffffff;
+    border: 2px solid #d9d9d9;
+    color: #555;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer; /* Cambiar cursor al pasar */
-    transition: all 0.3s ease-in-out; /* Transición suave */
-    font-size: 16px; /* Tamaño del icono */
-  }
-  
-  /* Efecto hover */
-  .comment-actions button:hover {
-    background-color: #f2f2f2; /* Fondo gris claro */
-    border-color: #b3b3b3; /* Borde gris oscuro */
-    color: #333; /* Color más oscuro */
-  }
-  
-  /* Iconos dentro de los botones */
-  .comment-actions button i {
-    pointer-events: none; /* Deshabilitar eventos en los íconos */
-  }
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+}
 
-  /*Estilos input comentario editar
+.comment-actions button:hover {
+    background-color: #f2f2f2;
+    border-color: #b3b3b3;
+    color: #333;
+}
 
-  /* Estilo para el contenedor del comentario (cuando se edita) */
+/* Input de edición de comentarios */
 .comment-content {
     display: flex;
     align-items: center;
     gap: 10px;
-  }
-  
-  /* Estilo para el input de edición del comentario */
-  .edit-comment-input {
+}
+
+.edit-comment-input {
     flex-grow: 1;
     padding: 8px 12px;
     border: 1px solid #ccc;
@@ -576,16 +717,16 @@ body {
     font-size: 14px;
     background-color: #f9f9f9;
     transition: border-color 0.3s ease;
-  }
-  
-  .edit-comment-input:focus {
-    border-color: #007bff; /* Color de borde cuando el input está en foco */
+}
+
+.edit-comment-input:focus {
+    border-color: #007bff;
     outline: none;
     background-color: #fff;
-  }
-  
-  /* Estilo para el botón de guardar (check) */
-  .save-comment {
+}
+
+/* Botón guardar (check) */
+.save-comment {
     background-color: #28a745;
     border: none;
     padding: 8px 12px;
@@ -594,35 +735,29 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-  }
-  
-  .save-comment:hover {
+}
+
+.save-comment:hover {
     background-color: #218838;
-  }
-  
-  .save-comment:active {
-    background-color: #1e7e34;
-  }
-  
-  /* Estilo para el icono del check */
-  .save-comment i {
+}
+
+.save-comment i {
     margin: 0;
     font-size: 16px;
     vertical-align: middle;
-  }
+}
 
-/* Ventana de FIltro
-/* Modal */
+/* Modal de filtro */
 .filter-modal {
-    display: none; /* Initially hidden */
+    display: none;
     position: fixed;
-    z-index: 1; /* Sit on top */
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
-    padding-top: 60px; /* Position the modal content */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
 }
 
 .filter-modal-content {
@@ -630,9 +765,9 @@ body {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 90%; /* Increased width to take more space */
-    max-width: 600px; /* Max width for better scaling */
-    box-sizing: border-box; /* To ensure padding doesn't cause overflow */
+    width: 90%;
+    max-width: 600px;
+    box-sizing: border-box;
 }
 
 .close-btn {
@@ -650,26 +785,84 @@ body {
 }
 
 #filter-input {
-    width: 100%; /* Full width of the modal content */
-    padding: 12px; /* Increased padding for a larger input */
+    width: 100%;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Prevents padding from causing overflow */
-    font-size: 16px; /* Larger text for better readability */
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
 #filter-search {
-    padding: 12px; /* Increased padding */
+    padding: 12px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 16px; /* Adjust font size for better readability */
+    font-size: 16px;
 }
 
 #filter-search:hover {
     background-color: #45a049;
 }
 
+/* Estilo para el modal de Login */
+.login-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+  }
+  
+  .login-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  .login-modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .login-modal-content input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+  
+  .login-modal-content button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-modal-content button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Desactivar la página detrás del modal */
+  body.modal-active {
+    overflow: hidden;
+  }
