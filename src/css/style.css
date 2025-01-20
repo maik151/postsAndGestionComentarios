@@ -185,18 +185,41 @@ body {
         background: none;
         border: none;
         cursor: pointer;
+        padding: 5px;
+        border-radius: 10px;
+        transition: 0.3s;
     }
 
     .filter-icon {
         width: 20px;
+        height: 0.3s
+    }
+
+    .filter-btn:hover{
+        background-color: #b3b3b3;
+        transition: 0.3s;
+    }
+
+
+    .reload-btn{
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    
+    .reload-btn:hover{
+        background-color: #b3b3b3;
+        transition: 0.3s;
+    }
+    
+    .reload-icon{
+        width: 20px;
         height: 20px;
-        filter: grayscale(100%);
     }
-
-    .filter-btn:hover .filter-icon {
-        filter: none;
-    }
-
+    
 
 /* Estilos de las card de post*/
 
@@ -587,4 +610,65 @@ body {
     font-size: 16px;
     vertical-align: middle;
   }
-  
+
+/* Ventana de FIltro
+/* Modal */
+.filter-modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    padding-top: 60px; /* Position the modal content */
+}
+
+.filter-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#filter-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#filter-search {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#filter-search:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para el botón de recarga */
+
+
