@@ -1,6 +1,6 @@
 //Importar las fuinciones de los demas
 import { createPost, addPostToArrayAndStorage, savePostsToLocalStorage, loadPostsFromLocalStorage, posts, visualizarPost } from './posts.js';
-import { createComment } from './comments.js';
+//import { createComment } from './comments.js';
 
 //---------------------Definir Constantes-------------------
 
@@ -19,10 +19,8 @@ const handlePostSubmit = (e) => {
         return;
     }
 
-    const newPost = addPostToArrayAndStorage('1', nameU, title, date, content);
-
+    const newPost = addPostToArrayAndStorage(nameU, title, date, content);
     visualizarPost(newPost, true);
-
     alert('¡Se agregó el post con éxito!');// Mostramos un mensaje de éxito
     // Limpiamos el formulario (opcional)
 
@@ -34,27 +32,118 @@ const handlePostSubmit = (e) => {
     
 };
 
-// Función provisional para obtener el nombre usando jQuery
-const setUserName  = () => {
 
-    const name = prompt("Ingresa tu nombre de usuario, por favor").trim();
-    if (name) {
-        $('.userNav').text(name); // Mostrar el nombre del usuario
-        $('#avatarName').text(name[0].toUpperCase()); // Inicial para el avatar
+const buscarPost = () => {
+    const searchKeyword = $("#filter-input").val().toLowerCase(); // Obtener palabra clave
+    const posts = JSON.parse(localStorage.getItem("posts")) || []; // Obtener los posts del localStorage
+
+    // Filtrar los posts que contienen la palabra clave en el título o contenido
+    const filteredPosts = posts.filter(post => 
+        post.title.toLowerCase().includes(searchKeyword) || 
+        post.content.toLowerCase().includes(searchKeyword)
+    );
+
+    // Mostrar los posts filtrados
+    $(".post-card").empty(); // Limpiar los posts previos
+    filteredPosts.forEach(post => {
+        // Definir el nombre del usuario activo para los comentarios
+        const leterUserActive = $('.userNav').text(); // Aquí pon tu lógica para obtener el usuario activo
+
+        // Crear la estructura HTML para cada post
+        $(".post-card").append(`
+            <div class="post-item">
+                <div class="post-header">
+                    <div class="avatar">${post.nameUser[0].toUpperCase()}</div>
+                    <div class="user-info">
+                        <span class="username">@${post.nameUser}</span>
+                        <span class="post-date">${post.date}</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h2 class="post-title">${post.title}</h2>
+                    <p>${post.content}</p>
+                </div>
+                <div class="post-footer">
+                    <button class="comment-btn">Comentar</button>
+                </div>
+
+                <div class="comments-section" style="display: none;">
+                    <!-- Aquí van los comentarios -->
+                    <div class="comment-form">
+                        <div class="avatar">${leterUserActive[0].toUpperCase()}</div> <!-- Mostrar avatar del usuario activo -->
+                        <div class="comment-input">
+                            <input type="text" placeholder="Escribe un comentario..." class="comment-box">
+                            <button class="submit-comment">Comentar</button>
+                        </div>
+                    </div>
+                    <div class="comment-list">
+                        <!-- Aquí se mostrarán los comentarios -->
+                    </div> 
+                </div>
+            </div>
+        `);
+    });
+
+    // Si no se encuentran posts
+    if (filteredPosts.length === 0) {
+        $(".post-card").append("<p>No se encontraron posts con esa palabra clave.</p>");
     }
+
+    // Cerrar el modal después de realizar la búsqueda
+    $("#filterModal").hide();
+};
+
+const reloadPosts = () => {
+    $(".post-card").empty(); // Limpiar los posts previos
+    loadPostsFromLocalStorage();
 }
+// Mostrar el modal al cargar la página
+const showLoginModal = () => {
+    const modal = document.getElementById('loginModal');
+    modal.style.display = 'flex';
+
+    // Al hacer clic en el botón Login
+    const submitButton = document.getElementById('submitUsername');
+    submitButton.addEventListener('click', () => {
+        const username = document.getElementById('usernameInput').value.trim();
+        if (username) {
+            // Asignar el nombre al userNav
+            document.querySelector('.userNav').textContent = username;
+            
+            modal.style.display = 'none';
+        }
+    });
+
+};
+ 
+$("#submitUsername").on("click", function() {
+    const userName = $("#usernameInput").val().trim(); // Obtener el nombre del usuario
+    if (userName) {
+        $(".userNav").text(userName); // Asignar el nombre al usuario en el nav
+        $('#avatarName').text(userName[0].toUpperCase()); // Asignar la inicial del avatar
+        $("#loginModal").hide(); // Ocultar el modal de login
+
+    }
+});
 
 
 //---------------------------Eventos----------------------------
 
 //Evento para ejecutar las funcioners apenas se cargue el document
-$(document).ready(() => {
-    setUserName(); // Configurar el nombre de usuario
-    loadPostsFromLocalStorage(); // Cargar los posts existentes
 
-    // Asignar el evento de envío al formulario
+window.onload = showLoginModal;
+
+$('#submitUsername').on('click',() => {
+    loadPostsFromLocalStorage(); // Cargar los posts existentes
+    // Mostrar el modal cuando se hace clic en el botón de filtro
     
+    showLoginModal();
 });
 
 $('#post-form').on('submit', handlePostSubmit);
 
+$('.filter-btn').on('click',)
+
+$("#filter-search").on("click", buscarPost);
+
+$(".reload-btn").on("click", reloadPosts);
