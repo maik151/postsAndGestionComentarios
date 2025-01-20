@@ -630,8 +630,9 @@ body {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
+    width: 90%; /* Increased width to take more space */
+    max-width: 600px; /* Max width for better scaling */
+    box-sizing: border-box; /* To ensure padding doesn't cause overflow */
 }
 
 .close-btn {
@@ -649,26 +650,26 @@ body {
 }
 
 #filter-input {
-    width: 100%;
-    padding: 10px;
+    width: 100%; /* Full width of the modal content */
+    padding: 12px; /* Increased padding for a larger input */
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box; /* Prevents padding from causing overflow */
+    font-size: 16px; /* Larger text for better readability */
 }
 
 #filter-search {
-    padding: 10px;
+    padding: 12px; /* Increased padding */
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 16px; /* Adjust font size for better readability */
 }
 
 #filter-search:hover {
     background-color: #45a049;
 }
-
-/* Estilo para el botón de recarga */
-
 
