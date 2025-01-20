@@ -32,15 +32,6 @@ const handlePostSubmit = (e) => {
     
 };
 
-// Función provisional para obtener el nombre usando jQuery
-const setUserName  = () => {
-
-    const name = prompt("Ingresa tu nombre de usuario, por favor").trim();
-    if (name) {
-        $('.userNav').text(name); // Mostrar el nombre del usuario
-        $('#avatarName').text(name[0].toUpperCase()); // Inicial para el avatar
-    }
-}
 
 const buscarPost = () => {
     const searchKeyword = $("#filter-input").val().toLowerCase(); // Obtener palabra clave
@@ -106,26 +97,47 @@ const reloadPosts = () => {
     $(".post-card").empty(); // Limpiar los posts previos
     loadPostsFromLocalStorage();
 }
+// Mostrar el modal al cargar la página
+const showLoginModal = () => {
+    const modal = document.getElementById('loginModal');
+    modal.style.display = 'flex';
 
+    // Al hacer clic en el botón Login
+    const submitButton = document.getElementById('submitUsername');
+    submitButton.addEventListener('click', () => {
+        const username = document.getElementById('usernameInput').value.trim();
+        if (username) {
+            // Asignar el nombre al userNav
+            document.querySelector('.userNav').textContent = username;
+            
+            modal.style.display = 'none';
+        }
+    });
 
+};
+ 
+$("#submitUsername").on("click", function() {
+    const userName = $("#usernameInput").val().trim(); // Obtener el nombre del usuario
+    if (userName) {
+        $(".userNav").text(userName); // Asignar el nombre al usuario en el nav
+        $('#avatarName').text(userName[0].toUpperCase()); // Asignar la inicial del avatar
+        $("#loginModal").hide(); // Ocultar el modal de login
+
+    }
+});
 
 
 //---------------------------Eventos----------------------------
 
 //Evento para ejecutar las funcioners apenas se cargue el document
-$(document).ready(() => {
-    setUserName(); // Configurar el nombre de usuario
+
+window.onload = showLoginModal;
+
+$('#submitUsername').on('click',() => {
     loadPostsFromLocalStorage(); // Cargar los posts existentes
     // Mostrar el modal cuando se hace clic en el botón de filtro
-    $(".filter-btn").on("click", function() {
-        $("#filterModal").show(); // Mostrar el modal
-    });
-    // Cerrar el modal cuando se hace clic en la 'X'
-    $(".close-btn").on("click", function() {
-        $("#filterModal").hide(); // Ocultar el modal
-    });
-    // Asignar el evento de envío al formulario
     
+    showLoginModal();
 });
 
 $('#post-form').on('submit', handlePostSubmit);
