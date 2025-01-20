@@ -1,7 +1,7 @@
 // Función para crear un comentario
 import { savePostsToLocalStorage} from './posts.js';
 
-
+//funcion para crear objertos de tipo comment
 export const createComment = (idComment, nameC, content, fechaC = new Date().toISOString().split("T")[0]) => {
     return {
       idComment,  // El ID se asignará dinámicamente más tarde
@@ -11,26 +11,29 @@ export const createComment = (idComment, nameC, content, fechaC = new Date().toI
     };
 };
 
-// Función para visualizar un comentario en un post
+// Función para visualizar un comentario (con botones Editar y Eliminar)
 export const visualizarComentario = (comment, postElement) => {
-    const commentHTML =  `
-      <div class="comment-item" data-id="${comment.idComment}">
-          <div class="comment-header">
-              <div class="avatar">${comment.nameC.charAt(0).toUpperCase()}</div> <!-- Inicial del nombre -->
-              <div class="user-info">
-                <span class="username">@${comment.nameC}</span> <!-- Nombre del usuario -->
-                <span class="comment-date">${comment.fechaC}</span> <!-- Fecha del comentario -->
-              </div>
-          </div>
-          <div class="comment-content">
-            <p>${comment.content}</p> <!-- Contenido dinámico -->
-          </div>
+  const commentHTML = `
+    <div class="comment-item" data-id="${comment.idComment}">
+      <div class="comment-header">
+        <div class="avatar">${comment.nameC.charAt(0).toUpperCase()}</div> <!-- Inicial del nombre -->
+        <div class="user-info">
+          <span class="username">@${comment.nameC}</span> <!-- Nombre del usuario -->
+          <span class="comment-date">${comment.fechaC}</span> <!-- Fecha del comentario -->
+        </div>
       </div>
-    `;
+      <div class="comment-content">
+        <p class="comment-text">${comment.content}</p> <!-- Contenido dinámico -->
+      </div>
 
-    postElement.find((".comment-list")).prepend(commentHTML); // Agregar al inicio si es un nuevo post
+      <div class="comment-actions">
+        <button class="edit-comment"><i class="fa-solid fa-pencil"></i></button>
+        <button class="delete-comment"><i class="fa-solid fa-trash"></i> </button>
+      </div>
+    </div>
+  `;
 
-    return commentHTML;
+  postElement.find(".comment-list").prepend(commentHTML); // Insertar en la lista de comentarios del post
 };
 
 
@@ -62,4 +65,38 @@ export const agregarComentario = (postId, postName, content) => {
   return newComment;
 
   
+};
+
+
+// Función para eliminar un comentario de un post
+export const eliminarComentario = (commentId, nameSearch) => {
+  // Obtener los posts desde el localStorage
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  // Buscar el post correspondiente
+  const postElementArray = posts.find(post => post.nameUser === nameSearch);
+  
+  if (!postElementArray) {
+    console.error("Post no encontrado.");
+    return;
+  }
+
+  // Obtener el array de comentarios del post
+  const commentElementArray = postElementArray.comments;
+
+  // Buscar el índice del comentario a eliminar
+  const commentIndex = commentElementArray.findIndex((comment) => comment.idComment === commentId);
+  
+  if (commentIndex === -1) {
+    console.error("Comentario no encontrado.");
+    return;
+  }
+
+  // Eliminar el comentario del arreglo de comentarios
+  postElementArray.comments.splice(commentIndex, 1); // Eliminar comentario del arreglo
+
+  // Actualizar el localStorage con los cambios
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  console.log("Comentario eliminado correctamente.");
 };

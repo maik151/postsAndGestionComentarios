@@ -21,7 +21,6 @@ const handlePostSubmit = (e) => {
 
     const newPost = addPostToArrayAndStorage(nameU, title, date, content);
     visualizarPost(newPost, true);
-
     alert('¡Se agregó el post con éxito!');// Mostramos un mensaje de éxito
     // Limpiamos el formulario (opcional)
 

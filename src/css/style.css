@@ -498,4 +498,40 @@ body {
     font-size: 14px;
     color: #333;
   }
+
+  /*Estilos botones de editar y eliminar*/
+  /* Contenedor de acciones de los comentarios */
+.comment-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  
+  /* Estilo base de los botones de acción */
+  .comment-actions button {
+    background-color: #ffffff; /* Fondo blanco */
+    border: 2px solid #d9d9d9; /* Borde gris claro */
+    color: #555; /* Color del ícono */
+    border-radius: 50%; /* Forma circular */
+    width: 40px; /* Tamaño del botón */
+    height: 40px; /* Tamaño del botón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Cambiar cursor al pasar */
+    transition: all 0.3s ease-in-out; /* Transición suave */
+    font-size: 16px; /* Tamaño del icono */
+  }
+  
+  /* Efecto hover */
+  .comment-actions button:hover {
+    background-color: #f2f2f2; /* Fondo gris claro */
+    border-color: #b3b3b3; /* Borde gris oscuro */
+    color: #333; /* Color más oscuro */
+  }
+  
+  /* Iconos dentro de los botones */
+  .comment-actions button i {
+    pointer-events: none; /* Deshabilitar eventos en los íconos */
+  }
   

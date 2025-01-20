@@ -1,5 +1,5 @@
 // posts.js
-import { agregarComentario, visualizarComentario} from './comments.js';
+import { agregarComentario, visualizarComentario, eliminarComentario} from './comments.js';
 
 let posts = []; // Array de posts
 const postsKey = "posts"; // Clave para almacenar los posts en localStorage
@@ -146,17 +146,25 @@ $(".post-card").on('click', '.comment-btn', function() {
   });
 
 
+  $(document).on("click", ".delete-comment", function () {
 
-//$(".post-card").on('click', '.comment-btn', function() {
-//    const postElement = $(this).closest(".post-item"); // Encontrar el post-item más cercano al botón de comentar
-//   
-//    if (postElement.length) {  // Si el post-item existe
- //     postElement.find(".comments-section").append(visualizarComentario()); // Agregar comentario al post específico
-//      console.log("Comentario agregado en el post con título:", postElement.find('.post-title').text()); // Verificar con el título del post
-//    } else {
-//      console.log("No se encontró el post correspondiente.");
-//    }
-//  });
+    // Obtener el elemento del post
+    const postElementC = $(this).closest(".post-item");
+    
+    // Obtener el nombre del usuario del post donde se clickea el evento
+    const nameSearch = postElementC.find('.username').first().text().replace('@', '');
+
+    // Obtener el ID del comentario que se va a eliminar
+    const commentId = $(this).closest(".comment-item").data("id");
+
+    // Llamar a la función eliminarComentario para eliminar el comentario
+    eliminarComentario(commentId, nameSearch);
+
+    // Eliminar el comentario de la interfaz
+    $(this).closest(".comment-item").remove();
+
+    
+  });
 
 
 // Exportar el array de posts
